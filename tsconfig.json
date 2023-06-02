@@ -1,0 +1,40 @@
+{
+  "extends": "ts-node/node16/tsconfig.json",
+  "ts-node": {
+    "transpileOnly": true,
+    "files": true,
+    "compilerOptions": {}
+  },
+  "compilerOptions": {
+    "target": "es6",
+    "lib": [
+      "es6",
+    ],
+    "allowJs": true,
+    "incremental": true,
+    "tsBuildInfoFile": "./.cache/.tsbuildinfo",
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    //"isolatedModules": true,
+    "noEmit": true,
+    "baseUrl": "/",
+    "sourceMap": true,
+    "sourceRoot": "/",
+    "typeRoots": ["./node_modules/@types/", "types"]
+  },
+  "include": ["./src", "types"],
+  "exclude": ["node_modules", "./src/**/*.spec.ts"],
+  "watchOptions": {
+    "watchFile": "useFsEvents",
+    "watchDirectory": "useFsEvents",
+    "fallbackPolling": "dynamicPriority",
+    "excludeDirectories": ["node_modules", "./src/**/*.spec.ts"]
+  }
+}

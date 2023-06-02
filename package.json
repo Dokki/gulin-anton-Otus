@@ -1,0 +1,27 @@
+{
+  "name": "otus-node-lessons-ag",
+  "version": "1.0.0",
+  "description": "Teaching of node.js in Otus school",
+  "scripts": {
+    "lesson1": "ts-node lesson1/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Anton Gulin",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.18.2",
+    "@babel/eslint-parser": "^7.18.2",
+    "@types/node": "^20.2.5",
+    "@typescript-eslint/eslint-plugin": "^5.40.0",
+    "@typescript-eslint/parser": "^5.40.0",
+    "eslint": "^8.17.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-babel": "^5.3.1",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-prettier": "^4.0.0",
+    "prettier": "^2.6.2",
+    "ts-node": "^10.9.1",
+    "tslib": "^2.5.2",
+    "typescript": "^4.9.5"
+  }
+}
