@@ -10,12 +10,16 @@
   },
   "author": "Anton Gulin",
   "license": "MIT",
+  "dependencies": {
+    "yargs": "^17.7.2"
+  },
   "devDependencies": {
     "@babel/core": "^7.18.2",
     "@babel/eslint-parser": "^7.18.2",
     "@types/node": "^20.2.5",
     "@typescript-eslint/eslint-plugin": "^5.40.0",
     "@typescript-eslint/parser": "^5.40.0",
+    "@types/yargs": "^17.0.24",
     "eslint": "^8.17.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-babel": "^5.3.1",
