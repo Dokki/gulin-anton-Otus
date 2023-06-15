@@ -3,7 +3,7 @@ module.exports = {
     browser: true,
     es6: true,
   },
-  parser: '@babel/eslint-parser',
+  parser: '@typescript-eslint/parser',
   parserOptions: {
     requireConfigFile: false,
   },
@@ -18,7 +18,8 @@ module.exports = {
       },
     ],
     'no-console': 'warn',
-    'no-shadow': 'error',
+    'no-shadow': 'off',
+    '@typescript-eslint/no-shadow': 'error',
     'babel/no-unused-expressions': [
       'error',
       {
