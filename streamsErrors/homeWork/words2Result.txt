@@ -1,0 +1,5 @@
+Text: ab cb bss b
+Words:
+{'ab':1,'b':1,'bss':1,'cb':1}
+Result:
+[1,1,1,1]
