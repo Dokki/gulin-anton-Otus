@@ -6,9 +6,9 @@
     "compilerOptions": {}
   },
   "compilerOptions": {
-    "target": "es6",
+    "target": "es2021",
     "lib": [
-      "es6",
+      "es2021",
     ],
     "allowJs": true,
     "incremental": true,
