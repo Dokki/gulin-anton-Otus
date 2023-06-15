@@ -4,8 +4,8 @@
   "description": "Teaching of node.js in Otus school",
   "scripts": {
     "lesson1": "ts-node lesson1/index.ts",
-    "lesson1HomeWork1": "ts-node lesson1/homeWork/index.ts -task=1 -path=\\1",
-    "lesson1HomeWork2": "ts-node lesson1/homeWork/index.ts -task=2 -path=\\Node.js -depth=2",
+    "lesson1HomeWork1": "ts-node lesson1/homeWork/index.ts --task=1 --path=\\1",
+    "lesson1HomeWork2": "ts-node lesson1/homeWork/index.ts --task=2 --path=\\Node.js --depth=2",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Anton Gulin",

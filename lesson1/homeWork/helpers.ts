@@ -2,27 +2,8 @@ import { Stats } from 'node:fs'
 import { TTreeJson, TYPES } from './types'
 import { lstat, readdir } from 'node:fs/promises'
 
-/***
- * Вспомогательная функция для парсинга параметров с package.json
- */
-export const parseArgs = (...args: string[]) =>
-  [...args].reduce(
-    (acc: Record<string, string | number | boolean>, item) => {
-      if (item) {
-        const [name, value] = item.split('=')
-        const number = parseInt(value)
-
-        if (isNaN(number))
-          acc[name.slice(1)] = value !== undefined ? value : true
-        else acc[name.slice(1)] = number
-      }
-
-      return acc
-    },
-    {
-      depth: 999,
-    },
-  )
+// eslint-disable-next-line no-console
+export const log = console.log.bind(console)
 
 /***
  * Вспомогательная функция для определения типа item
@@ -74,7 +55,7 @@ export const getFoldersTree = async (
  */
 export const visualIterator = (
   items: TTreeJson[],
-  depth: number,
+  depth = 999,
   nesting = 0,
   prefix = '',
 ) =>
