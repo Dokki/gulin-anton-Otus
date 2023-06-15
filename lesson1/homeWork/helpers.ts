@@ -41,7 +41,7 @@ export const getFoldersTree = async (
 
   return [
     {
-      name: argsPath.slice(1),
+      name: argsPath,
       path: taskPath,
       is: TYPES.folder,
       items: await iterator(taskPath),

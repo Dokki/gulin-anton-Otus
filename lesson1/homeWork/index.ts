@@ -59,6 +59,8 @@ const runTask2 = async (path: string) => {
 }
 
 const run = async () => {
+  if (!args.path) return 'The path to folder must be a specified'
+
   switch (args.task) {
     case 1:
       log(await runTask1(args.path))
