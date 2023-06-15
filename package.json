@@ -4,7 +4,7 @@
   "description": "Teaching of node.js in Otus school",
   "scripts": {
     "lesson1": "ts-node lesson1/index.ts",
-    "streamErrorsHomeWork": "ts-node streamsErrors/homeWork/index.ts -files=words1,words2,words3,words4,words5",
+    "streamErrorsHomeWork": "ts-node streamsErrors/homeWork/index.ts --files=words1,words2,words3,words4,words5",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Anton Gulin",

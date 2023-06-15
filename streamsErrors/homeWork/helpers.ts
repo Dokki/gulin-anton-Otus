@@ -4,25 +4,7 @@ import { TCollect } from './types'
 /***
  * Вспомогательная функция для парсинга параметров с package.json
  */
-export const parseArgs = (...args: string[]) =>
-  [...args].reduce(
-    (acc: Record<string, string | number | boolean | string[]>, item) => {
-      if (item) {
-        const [name, value] = item.split('=')
-        const number = parseInt(value)
-
-        if (isNaN(number)) {
-          if (value !== undefined) {
-            if (value.indexOf(',')) acc[name.slice(1)] = value.split(/\s*,\s*/)
-            else acc[name.slice(1)] = value
-          } else acc[name.slice(1)] = true
-        } else acc[name.slice(1)] = number
-      }
-
-      return acc
-    },
-    {},
-  )
+export const parseNames = (names: string) => (names || '').split(/\s*,\s*/)
 
 // eslint-disable-next-line no-console
 export const log = console.log.bind(console)

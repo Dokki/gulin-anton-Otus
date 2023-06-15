@@ -3,12 +3,13 @@
 import { compose } from 'node:stream'
 import { resolve } from 'node:path'
 import { pipeline } from 'node:stream/promises'
+import yargs from 'yargs'
+import { hideBin } from 'yargs/helpers'
 import { createReadStream, createWriteStream } from 'node:fs'
-import { parseArgs, log, toString, clean, collect } from './helpers'
+import { parseNames, log, toString, clean, collect } from './helpers'
 
-const [, , words] = process.argv
-const args = parseArgs(words)
-const fileNames = (args.files as string[]) || []
+const args = yargs(hideBin(process.argv)).argv as Record<string, string>
+const fileNames = parseNames(args.files)
 const projectRoot = resolve(__dirname)
 
 const run = async () =>
