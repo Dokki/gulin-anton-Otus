@@ -4,7 +4,8 @@ import { TCollect } from './types'
 /***
  * Вспомогательная функция для парсинга параметров с package.json
  */
-export const parseNames = (names: string) => (names || '').split(/\s*,\s*/)
+export const parseNames = (names: string) =>
+  (names || '').trim().split(/\s*,\s*/)
 
 // eslint-disable-next-line no-console
 export const log = console.log.bind(console)
@@ -14,7 +15,7 @@ const regExps = {
   cleanSpaces: /\s+/gm,
 }
 /***
- * Трансформируем в строку.
+ * Трансформируем чанки в строку.
  */
 export async function* toString(source: Readable) {
   for await (const chunk of source) yield chunk.toString()
@@ -44,7 +45,7 @@ ${stringify(collected)}
 Result:
 ${stringify(Object.values(collected))}`
 /***
- * Собираем чанки для текста и результат.
+ * Собираем чанки для изначального текста и сам результат.
  * Сортируем по алфавиту.
  * Подсчитываем слова и отдаем дальше как стрингу.
  */

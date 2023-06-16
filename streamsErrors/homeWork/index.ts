@@ -1,5 +1,5 @@
 // @ts-ignore Почему-то нет типа для compose :( хотя функция присутствует.
-// Что то не так с типами, https://nodejs.org/docs/latest-v20.x/api/stream.html#streamcomposestreams
+// Что то не так с типами, https://nodejs.org/docs/latest-v16.x/api/stream.html#streamcomposestreams
 import { compose } from 'node:stream'
 import { resolve } from 'node:path'
 import { pipeline } from 'node:stream/promises'
