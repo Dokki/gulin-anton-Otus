@@ -38,7 +38,7 @@ export async function* clean(source: Readable) {
 }
 
 const stringify = (value: unknown) => JSON.stringify(value).replaceAll('"', "'")
-const visualToConsole = (text: string, collected: TCollect) => `Text: ${text}
+const toVisual = (text: string, collected: TCollect) => `Text: ${text}
 Words:
 ${stringify(collected)}
 Result:
@@ -59,7 +59,7 @@ export async function* collect(source: Readable) {
 
   result.sort()
 
-  yield visualToConsole(
+  yield toVisual(
     text.join(''),
     result.reduce((acc, word) => {
       if (acc[word] === undefined) acc[word] = 1
