@@ -1,0 +1,5 @@
+Text: a c b b
+Words:
+{'a':1,'b':2,'c':1}
+Result:
+[1,2,1]

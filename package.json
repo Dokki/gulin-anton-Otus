@@ -6,6 +6,7 @@
     "lesson1": "ts-node lesson1/index.ts",
     "lesson1HomeWork1": "ts-node lesson1/homeWork/index.ts --task=1 --path=1",
     "lesson1HomeWork2": "ts-node lesson1/homeWork/index.ts --task=2 --path=Node.js --depth=2",
+    "streamErrorsHomeWork": "ts-node streamsErrors/homeWork/index.ts --files=words1,words2,words3,words4,words5",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Anton Gulin",

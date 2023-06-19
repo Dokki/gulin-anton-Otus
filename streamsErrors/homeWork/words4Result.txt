@@ -1,0 +1,5 @@
+Text: alex, alex, juan, dima
+Words:
+{'alex':2,'dima':1,'juan':1}
+Result:
+[2,1,1]
