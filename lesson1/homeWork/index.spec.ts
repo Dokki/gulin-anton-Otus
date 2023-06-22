@@ -144,7 +144,7 @@ describe('Tree js', () => {
       const count = countItems(root?.items ?? [])
       // Результат должен совпадать.
       expect(result).toEqual(mocks.getItemType)
-      // 11 файлов и папок находится в папке Node.js.
+      // Кол-во вызовов функции и кол-во файлов и папок должно совпадать.
       expect(callback).toBeCalledTimes(count)
     })
 
