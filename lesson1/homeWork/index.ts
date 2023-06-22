@@ -1,8 +1,8 @@
-import { resolve } from 'node:path'
 import yargs from 'yargs'
+import { resolve } from 'node:path'
 import { hideBin } from 'yargs/helpers'
-import { getFoldersTree, visualIterator, log } from './helpers'
 import { TYPES, TTreeJson, TArgs } from './types'
+import { getFoldersTree, visualIterator, log } from './helpers'
 
 const args = yargs(hideBin(process.argv)).default({ depth: 999 })
   .argv as unknown as TArgs
@@ -22,6 +22,7 @@ const runTask1 = async (path: string) => {
   const tree = await getFoldersTree(projectRoot, path)
   const [root] = tree
 
+  if (!root.isExist) return 'Folder is not exist'
   if (!root.items?.length) return 'Empty folder'
 
   return visualIterator(tree, args.depth)
@@ -51,26 +52,26 @@ const runTask2 = async (path: string) => {
   })
   const [root] = tree
 
+  if (!root.isExist) return 'Folder is not exist'
   if (!root.items?.length) return 'Empty folder'
 
-  return `${visualIterator(tree, args.depth)} ${count.folders} directories, ${
+  return `${visualIterator(tree, args.depth)}\n${count.folders} directories, ${
     count.files
   } files`
 }
 
-const run = async () => {
-  if (!args.path) return 'The path to folder must be a specified'
+export const run = async (path: string, task: number) => {
+  if (!path) return 'The path to folder must be a specified'
 
-  switch (args.task) {
+  switch (task) {
     case 1:
-      log(await runTask1(args.path))
-      break
+      return await runTask1(path)
     case 2:
-      log(await runTask2(args.path))
-      break
+      return await runTask2(path)
     default:
-      log('Nothing to show')
+      return 'Nothing to show'
   }
 }
-
-run().catch(log)
+;(async () => {
+  log(await run(args.path, args.task).catch(log))
+})()

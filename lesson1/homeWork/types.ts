@@ -5,8 +5,8 @@ export enum TYPES {
 
 export type TTreeJson = {
   name: string
-  path: string
   is: TYPES
+  isExist?: boolean
   items?: TTreeJson[]
 }
 

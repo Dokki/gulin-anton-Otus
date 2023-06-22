@@ -1,4 +1,4 @@
-import { Stats } from 'node:fs'
+import { Stats, existsSync } from 'node:fs'
 import { TTreeJson, TYPES } from './types'
 import { lstat, readdir } from 'node:fs/promises'
 
@@ -21,6 +21,7 @@ export const getFoldersTree = async (
   callback?: (item: TTreeJson) => void,
 ): Promise<TTreeJson[]> => {
   const taskPath = `${projectRoot}/${argsPath}`
+  const isExist = existsSync(taskPath)
   const iterator = async (folderPath: string) => {
     const files = await readdir(folderPath)
 
@@ -28,7 +29,7 @@ export const getFoldersTree = async (
       files.map(async (name) => {
         const path = `${folderPath}/${name}`
         const stats = await lstat(path)
-        const item: TTreeJson = { name, path, is: getItemType(stats) }
+        const item: TTreeJson = { name, is: getItemType(stats) }
 
         if (item.is === TYPES.folder) item.items = await iterator(path)
 
@@ -42,9 +43,9 @@ export const getFoldersTree = async (
   return [
     {
       name: argsPath,
-      path: taskPath,
       is: TYPES.folder,
-      items: await iterator(taskPath),
+      isExist,
+      items: isExist ? await iterator(taskPath) : [],
     },
   ]
 }
@@ -60,6 +61,8 @@ export const visualIterator = (
   prefix = '',
 ) =>
   items.reduce((acc, item, index) => {
+    if (!(nesting === 0 && index === 0)) acc += `\n`
+
     const padding = nesting > 1 ? ' '.repeat(nesting * 2) : ''
     const space = nesting === 0 ? '' : ' '
 
@@ -70,7 +73,7 @@ export const visualIterator = (
       acc += items[index + 1] !== undefined ? '├──' : '└──'
     }
 
-    acc += `${space}${item.name}\n`
+    acc += `${space}${item.name}`
 
     if (item.items && item.items.length && nesting < depth) {
       acc += visualIterator(
