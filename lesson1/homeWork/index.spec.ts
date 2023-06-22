@@ -112,6 +112,12 @@ const mocks = {
 └── worker
 4 directories, 7 files`,
   },
+  messages: {
+    notExist: 'Folder is not exist',
+    empty: 'Empty folder',
+    notSpecified: 'The path to folder must be a specified',
+    nothingShow: 'Nothing to show',
+  },
 }
 const countItems = (tree: TTreeJson[]): number =>
   tree.reduce((count, item): number => {
@@ -147,9 +153,9 @@ describe('Tree js', () => {
       const resultIsEmpty = validateTree({ isExist: true, items: [] })
       const resultIsNormal = validateTree({ isExist: true, items: [item] })
       // Проверка на существование папки.
-      expect(resultNotExist).toBe('Folder is not exist')
+      expect(resultNotExist).toBe(mocks.messages.notExist)
       // Проверка на пустоту папки.
-      expect(resultIsEmpty).toBe('Empty folder')
+      expect(resultIsEmpty).toBe(mocks.messages.empty)
       // Проверка на пустоту папки.
       expect(resultIsNormal).toBe('')
     })
@@ -189,27 +195,27 @@ describe('Tree js', () => {
       const resultWrongPath = await run('', 1)
       const resultWrongTask = await run('1', 3)
       // Проверка на path.
-      expect(resultWrongPath).toBe('The path to folder must be a specified')
+      expect(resultWrongPath).toBe(mocks.messages.notSpecified)
       // Проверка на task.
-      expect(resultWrongTask).toBe('Nothing to show')
+      expect(resultWrongTask).toBe(mocks.messages.nothingShow)
     })
 
     it('Функция runTask1 должна возвращать сообщение если папка пуста или не существует.', async () => {
       const resultNotExist = await run('2', 1)
       const resultIsEmpty = await run('1/2/3', 1)
       // Проверка на существование папки.
-      expect(resultNotExist).toBe('Folder is not exist')
+      expect(resultNotExist).toBe(mocks.messages.notExist)
       // Проверка на пустоту папки.
-      expect(resultIsEmpty).toBe('Empty folder')
+      expect(resultIsEmpty).toBe(mocks.messages.empty)
     })
 
     it('Функция runTask2 должна возвращать сообщение если папка пуста или не существует.', async () => {
       const resultNotExist = await run('2', 2)
       const resultIsEmpty = await run('1/2/3', 2)
       // Проверка на существование папки.
-      expect(resultNotExist).toBe('Folder is not exist')
+      expect(resultNotExist).toBe(mocks.messages.notExist)
       // Проверка на пустоту папки.
-      expect(resultIsEmpty).toBe('Empty folder')
+      expect(resultIsEmpty).toBe(mocks.messages.empty)
     })
   })
 
