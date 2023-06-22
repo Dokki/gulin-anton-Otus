@@ -138,16 +138,20 @@ describe('Tree js', () => {
       expect(getItemType(stats(undefined))).toBe(TYPES.file)
     })
 
-    it('Функция validateTree должна сообщение либо пустую строку.', () => {
+    it('Функция validateTree должна вернуть сообщение либо пустую строку.', () => {
+      const item = { name: 'some name', is: TYPES.folder, items: [] }
       const resultNotExist = validateTree({
         isExist: false,
-        items: [{ name: 'some name', is: TYPES.folder, items: [] }],
+        items: [item],
       })
       const resultIsEmpty = validateTree({ isExist: true, items: [] })
+      const resultIsNormal = validateTree({ isExist: true, items: [item] })
       // Проверка на существование папки.
       expect(resultNotExist).toBe('Folder is not exist')
       // Проверка на пустоту папки.
       expect(resultIsEmpty).toBe('Empty folder')
+      // Проверка на пустоту папки.
+      expect(resultIsNormal).toBe('')
     })
 
     it('Функция getFoldersTree должна возвращать дерево.', async () => {
