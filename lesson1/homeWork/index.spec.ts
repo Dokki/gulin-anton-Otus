@@ -1,7 +1,12 @@
 import { Stats } from 'node:fs'
 import { resolve } from 'node:path'
 import { TYPES, TTreeJson } from './types'
-import { getItemType, getFoldersTree, visualIterator } from './helpers'
+import {
+  getItemType,
+  getFoldersTree,
+  visualIterator,
+  validateTree,
+} from './helpers'
 import { run } from './index'
 
 type TAllTypes = boolean | number | string | unknown
@@ -131,6 +136,18 @@ describe('Tree js', () => {
       expect(getItemType(stats(0))).toBe(TYPES.file)
       expect(getItemType(stats(''))).toBe(TYPES.file)
       expect(getItemType(stats(undefined))).toBe(TYPES.file)
+    })
+
+    it('Функция validateTree должна сообщение либо пустую строку.', () => {
+      const resultNotExist = validateTree({
+        isExist: false,
+        items: [{ name: 'some name', is: TYPES.folder, items: [] }],
+      })
+      const resultIsEmpty = validateTree({ isExist: true, items: [] })
+      // Проверка на существование папки.
+      expect(resultNotExist).toBe('Folder is not exist')
+      // Проверка на пустоту папки.
+      expect(resultIsEmpty).toBe('Empty folder')
     })
 
     it('Функция getFoldersTree должна возвращать дерево.', async () => {
