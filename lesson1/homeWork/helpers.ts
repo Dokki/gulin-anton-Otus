@@ -6,10 +6,19 @@ import { lstat, readdir } from 'node:fs/promises'
 export const log = console.log.bind(console)
 
 /***
- * Вспомогательная функция для определения типа item
+ * Вспомогательная функция для определения типа item.
  */
 export const getItemType = (stats: Stats) =>
   stats.isDirectory() ? TYPES.folder : TYPES.file
+
+/***
+ * Вспомогательная функция для валидации дерева.
+ */
+export const validateTree = ({ isExist, items }: TTreeJson): string => {
+  if (!isExist) return 'Folder is not exist'
+  if (!items?.length) return 'Empty folder'
+  return ''
+}
 
 /***
  * Функция рекурсивно собирает дерево папок и файлов в объект,

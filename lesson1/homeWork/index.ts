@@ -2,7 +2,7 @@ import yargs from 'yargs'
 import { resolve } from 'node:path'
 import { hideBin } from 'yargs/helpers'
 import { TYPES, TTreeJson, TArgs } from './types'
-import { getFoldersTree, visualIterator, log } from './helpers'
+import { getFoldersTree, visualIterator, validateTree, log } from './helpers'
 
 const args = yargs(hideBin(process.argv)).default({ depth: 999 })
   .argv as unknown as TArgs
@@ -22,9 +22,9 @@ const isRunByJest = process.mainModule === undefined
 const runTask1 = async (path: string) => {
   const tree = await getFoldersTree(projectRoot, path)
   const [root] = tree
+  const message = validateTree(root)
 
-  if (!root.isExist) return 'Folder is not exist'
-  if (!root.items?.length) return 'Empty folder'
+  if (message) return message
 
   return visualIterator(tree, args.depth)
 }
@@ -52,9 +52,9 @@ const runTask2 = async (path: string) => {
     else count.files += 1
   })
   const [root] = tree
+  const message = validateTree(root)
 
-  if (!root.isExist) return 'Folder is not exist'
-  if (!root.items?.length) return 'Empty folder'
+  if (message) return message
 
   return `${visualIterator(tree, args.depth)}\n${count.folders} directories, ${
     count.files
