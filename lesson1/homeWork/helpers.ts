@@ -14,7 +14,10 @@ export const getItemType = (stats: Stats) =>
 /***
  * Вспомогательная функция для валидации дерева.
  */
-export const validateTree = ({ isExist, items }: TTreeJson): string => {
+export const validateTree = ({
+  isExist,
+  items,
+}: Partial<TTreeJson>): string => {
   if (!isExist) return 'Folder is not exist'
   if (!items?.length) return 'Empty folder'
   return ''
