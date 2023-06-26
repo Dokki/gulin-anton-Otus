@@ -1,5 +1,6 @@
 import { Stats } from 'node:fs'
 import { resolve } from 'node:path'
+import mockFs from 'mock-fs'
 import { TYPES, TTreeJson } from './types'
 import {
   getItemType,
@@ -125,6 +126,40 @@ const countItems = (tree: TTreeJson[]): number =>
 
     return ++count
   }, 0)
+
+beforeEach(() => {
+  mockFs({
+    [`${projectRoot}/1`]: {
+      2: {
+        3: {},
+        4: {},
+      },
+      5: {
+        6: {},
+      },
+    },
+    [`${projectRoot}/Node.js`]: {
+      cluster: {
+        'index.js': '',
+      },
+      domain: {
+        'error.js': '',
+        'flow.js': '',
+        'run.js': '',
+      },
+      errors: {
+        'counter.js': '',
+        'try-catch.js': '',
+      },
+      worker: {},
+      'index.js': '',
+    },
+  })
+})
+
+afterEach(() => {
+  mockFs.restore()
+})
 
 describe('Tree js', () => {
   describe('Helpers functions', () => {
