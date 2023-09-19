@@ -2,6 +2,7 @@
   "name": "otus-node-lessons-ag",
   "version": "1.0.0",
   "description": "Teaching of node.js in Otus school",
+  "type": "module",
   "scripts": {
     "lesson1": "ts-node lesson1/index.ts",
     "lesson1HomeWork1": "ts-node lesson1/homeWork/index.ts --task=1 --path=1",
