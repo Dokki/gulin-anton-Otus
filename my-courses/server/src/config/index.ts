@@ -26,5 +26,5 @@ export const expiresIn = '1d'
 export const expiresInRemember = '7d'
 export const imagesAccept = ['jpg', 'jpeg', 'gif', 'png']
 export const rootDir = dirname(fileURLToPath(rootDirArr.join(sep)))
-export const uploadPath = join(rootDir, 'images')
+export const uploadPath = join(rootDir, 'images', sep)
 export const initImagesPath = join(rootDir, '../src/db/init/images')
