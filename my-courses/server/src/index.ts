@@ -3,8 +3,7 @@ import cors from 'cors'
 import helmet from 'helmet'
 import morgan from 'morgan'
 import fileUpload from 'express-fileupload'
-import { join } from 'path'
-import { isProduction, config, rootDir } from './config/index.js'
+import { isProduction, config, uploadPath } from './config/index.js'
 import { router } from './routes/routes.js'
 import onError from './utils/onError.js'
 import { initDB } from './db/index.js'
@@ -34,14 +33,7 @@ app.use(
   }) as RequestHandler,
 )
 
-if (isProduction) {
-  app.use(express.static(join(rootDir, '../../client/build')))
-  // Нужно на продакшене настроить картинки
-  //app.use('/images', express.static(rootDir + '../build/images'));
-} else {
-  app.use('/images', express.static(join(rootDir, '/images')))
-}
-
+app.use('/images', express.static(uploadPath))
 app.use('/api', router)
 app.use('*', (req, res) => {
   res.sendStatus(404)
