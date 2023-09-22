@@ -7,7 +7,6 @@
     "allowSyntheticDefaultImports": true,
     "module": "esnext",
     "moduleResolution": "node",
-    "noEmit": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "baseUrl": "src",
@@ -15,5 +14,13 @@
     "rootDir": "./src",
     "skipLibCheck": true,
     "strict": true
+  },
+  "include": ["./src"],
+  "exclude": ["node_modules"],
+  "watchOptions": {
+    "watchFile": "fixedPollingInterval",
+    "watchDirectory": "fixedPollingInterval",
+    "fallbackPolling": "fixedinterval",
+    "excludeDirectories": ["node_modules"]
   }
 }

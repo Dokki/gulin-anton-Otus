@@ -1,6 +1,7 @@
 import { MongoClient, Db } from 'mongodb'
 
-const url = 'mongodb://user:12345@127.0.0.1:27017'
+const host = process.env.DOCKER ? 'mongo' : '127.0.0.1'
+const url = `mongodb://${host}:27017`
 const dbName = 'myCourses'
 
 export class MongoDB {

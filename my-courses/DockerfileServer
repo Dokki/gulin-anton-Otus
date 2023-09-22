@@ -1,0 +1,29 @@
+# syntax=docker/dockerfile:1.4
+
+# Create image based on the official Node image from dockerhub
+FROM node:lts-buster-slim
+RUN apt-get update && apt-get install -y yarn
+#ENV NODE_ENV development
+# Create app directory
+WORKDIR /usr/src/app
+
+# Copy dependency definitions
+COPY shared /usr/src/shared
+COPY server/package.json /usr/src/app
+COPY server/yarn.lock /usr/src/app
+COPY .eslintrc.cjs /usr/src/app
+
+# Install dependecies
+RUN yarn config set strict-ssl false -g
+RUN yarn config set enableStrictSsl false  -g
+RUN yarn install  --frozen-lockfile
+RUN mkdir node_modules/.cache && chmod -R 777 node_modules/.cache
+
+# Get all the code needed to run the app
+COPY server /usr/src/app
+
+# Expose the port the app runs in
+EXPOSE 4000
+
+# Serve the app
+CMD ["yarn", "build"]

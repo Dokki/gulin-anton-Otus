@@ -101,7 +101,6 @@ const AddUpdateCourse: FC = () => {
 
       data.append(
         'deletedImages',
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         JSON.stringify(deletedImages.map(({ dataURL, ...image }) => image)),
       )
 

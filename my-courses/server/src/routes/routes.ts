@@ -2,7 +2,7 @@ import { Router } from 'express'
 import { v4 as uuid } from 'uuid'
 import { unlink } from 'node:fs/promises'
 import { UploadedFile } from 'express-fileupload'
-import { imagesAccept, uploadPath } from '../config'
+import { imagesAccept, uploadPath } from '../config/index.js'
 import {
   createCourse,
   getCourse,
@@ -16,9 +16,9 @@ import {
   deleteComment,
   getUsers,
   encodePassword,
-} from '../db'
+} from '../db/index.js'
 import { send, authChecker, getToken } from './helpers.js'
-import { TImagesResult, TUser } from '../../../shared'
+import { TImagesResult, TUser } from '../../../shared/index.js'
 import { validatorMiddleware } from './schemas.js'
 
 type TUploadImages = {
@@ -315,7 +315,6 @@ router.post(
       body: { title, introduction, description, access, deletedImages },
       files,
     } = req
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { comments, ...course } = await getCourse(id)
 
     if (!course || !course.owner || course.owner.id.toString() !== userId)

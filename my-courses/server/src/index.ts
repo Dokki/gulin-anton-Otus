@@ -4,10 +4,10 @@ import helmet from 'helmet'
 import morgan from 'morgan'
 import fileUpload from 'express-fileupload'
 import { join } from 'path'
-import { isProduction, config, rootDir } from './config'
-import { router } from './routes/routes'
-import onError from './utils/onError'
-import { initDB } from './db'
+import { isProduction, config, rootDir } from './config/index.js'
+import { router } from './routes/routes.js'
+import onError from './utils/onError.js'
+import { initDB } from './db/index.js'
 
 // eslint-disable-next-line no-console
 await initDB().catch(console.error)

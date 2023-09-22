@@ -1,7 +1,12 @@
 import { Response, Request, NextFunction } from 'express'
 import jwt from 'jsonwebtoken'
-import { tokenSecret, algorithm, expiresIn, expiresInRemember } from '../config'
-import { findUserBy } from '../db'
+import {
+  tokenSecret,
+  algorithm,
+  expiresIn,
+  expiresInRemember,
+} from '../config/index.js'
+import { findUserBy } from '../db/index.js'
 
 export const send = {
   badRequest: (res: Response, message = 'Переданные данные не валидны') =>

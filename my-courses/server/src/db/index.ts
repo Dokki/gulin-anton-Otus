@@ -1,7 +1,12 @@
 import { ObjectId } from 'mongodb'
 import { randomBytes, pbkdf2 } from 'node:crypto'
-import { TUserRegistration, TCourse, TComment, TUser } from '../../../shared'
-import clientDb from './client'
+import {
+  TUserRegistration,
+  TCourse,
+  TComment,
+  TUser,
+} from '../../../shared/index.js'
+import clientDb from './client.js'
 
 export const mongoDB = new clientDb.MongoDB()
 const rename = (
@@ -81,7 +86,7 @@ const createCollections = async () => {
   return Promise.all(
     collectionNames.map(async (name) => {
       const collection = await db.createCollection(name)
-      const json = (await import(`../data/${name}.js`)).default
+      const json = (await import(`./init/${name}.js`)).default
 
       return collection.insertMany(json)
     }),
@@ -110,12 +115,9 @@ export const getUsers = async (except: string[] = []) => {
   const usersDB = db.collection<TUser>('users')
   const users = await usersDB.find().sort({ firstName: 1 }).toArray()
 
-  return (
-    users
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      .map(({ _id, password, ...user }) => ({ ...user, id: _id.toString() }))
-      .filter((user) => !except.includes(user.id))
-  )
+  return users
+    .map(({ _id, password, ...user }) => ({ ...user, id: _id.toString() }))
+    .filter((user) => !except.includes(user.id))
 }
 
 export const findUserBy = async (value: string, param = '_id') => {
@@ -271,12 +273,7 @@ export const getCourses = async (
     },
   ]
 
-  const [
-    {
-      courses,
-      total: { count },
-    },
-  ] = await coursesDB
+  const [{ courses = [], total: { count = 0 } = {} } = {}] = await coursesDB
     .aggregate<{ courses: TCourse[]; total: { count: number } }>([
       ...(userId ? match : []),
       {

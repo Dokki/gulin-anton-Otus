@@ -1,8 +1,8 @@
 import axios, { AxiosRequestConfig, HttpStatusCode, AxiosResponse } from 'axios'
 import qs from 'qs'
-import { useAuthStore, useGlobalLoader, useContentLoader } from '../store'
+import { useAuthStore, useGlobalLoader, useContentLoader } from 'store'
 import showToast from './toast'
-import { navigate } from '../App'
+import { navigate } from 'App'
 
 interface AxiosError<T> extends Error {
   config: AxiosRequestConfig

@@ -1,7 +1,7 @@
 import { RequestHandler } from 'express'
 import Joi, { ObjectSchema } from 'joi'
 import expressJoi from 'express-joi-validation'
-import { config, host } from '../config'
+import { config, host } from '../config/index.js'
 
 const validator = expressJoi.createValidator({ passError: true })
 const headerError = 'Что то не так с запросом'
