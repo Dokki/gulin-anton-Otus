@@ -1,11 +1,13 @@
 import { ObjectId } from 'mongodb'
 import { randomBytes, pbkdf2 } from 'node:crypto'
+import { cp } from 'node:fs/promises'
 import {
   TUserRegistration,
   TCourse,
   TComment,
   TUser,
 } from '../../../shared/index.js'
+import { uploadPath, initImagesPath } from '../config/index.js'
 import clientDb from './client.js'
 
 export const mongoDB = new clientDb.MongoDB()
@@ -82,6 +84,8 @@ export const initDB = async () => {
 const collectionNames = ['users', 'courses', 'comments']
 const createCollections = async () => {
   const db = await mongoDB.getDb()
+
+  await cp(initImagesPath, uploadPath, { recursive: true })
 
   return Promise.all(
     collectionNames.map(async (name) => {

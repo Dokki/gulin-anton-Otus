@@ -1,7 +1,7 @@
-import { dirname } from 'path'
+import { dirname, sep, join } from 'path'
 import { fileURLToPath } from 'url'
 
-const rootDirArr = import.meta.url.split('/')
+const rootDirArr = import.meta.url.split(sep)
 
 rootDirArr.pop()
 
@@ -25,5 +25,6 @@ export const algorithm = 'HS256'
 export const expiresIn = '1d'
 export const expiresInRemember = '7d'
 export const imagesAccept = ['jpg', 'jpeg', 'gif', 'png']
-export const rootDir = dirname(fileURLToPath(rootDirArr.join('/')))
-export const uploadPath = rootDir + '\\images\\'
+export const rootDir = dirname(fileURLToPath(rootDirArr.join(sep)))
+export const uploadPath = join(rootDir, 'images')
+export const initImagesPath = join(rootDir, '../src/db/init/images')
