@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "allowJs": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "allowSyntheticDefaultImports": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "baseUrl": "src",
+    "outDir": "./build",
+    "rootDir": "./src",
+    "skipLibCheck": true,
+    "strict": true
+  },
+  "include": ["./src"],
+  "exclude": ["node_modules"],
+  "watchOptions": {
+    "watchFile": "fixedPollingInterval",
+    "watchDirectory": "fixedPollingInterval",
+    "fallbackPolling": "fixedinterval",
+    "excludeDirectories": ["node_modules"]
+  }
+}

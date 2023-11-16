@@ -1,0 +1,41 @@
+services:
+  client:
+    build:
+      context: .
+      dockerfile: DockerfileClient
+    ports:
+      - 3000:3000
+    stdin_open: true
+    environment:
+      - NODE_ENV=development
+      - WATCHPACK_POLLING=true
+    volumes:
+      - ./client:/usr/src/app
+      - /usr/src/app/node_modules
+    restart: always
+    depends_on:
+      - server
+
+  server:
+    restart: always
+    build:
+      context: .
+      dockerfile: DockerfileServer
+    ports:
+      - 4000:4000
+    environment:
+      - NODE_ENV=development
+      - DOCKER=true
+    volumes:
+      - ./server:/usr/src/app
+      - /usr/src/app/node_modules
+    depends_on:
+      - mongo
+
+  mongo:
+    restart: always
+    image: mongo
+    ports:
+      - 27018:27017
+    volumes:
+      - ./data:/data/db
