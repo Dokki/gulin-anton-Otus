@@ -1,0 +1,14 @@
+{
+  "name": "otus-my-courses",
+  "version": "1.0.0",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "ryba-js": "^0.0.9",
+    "ws": "^8.14.2"
+  },
+  "scripts": {
+    "start": "node server/index.js"
+  }
+}
