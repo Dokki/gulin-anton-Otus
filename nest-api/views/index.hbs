@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <meta name="theme-color" content="#209CEE" />
+    <link rel="manifest" href="/manifest.json" />
+    <title>Todo application</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css" />
+    <script src="/script.js"></script>
+  </head>
+  <body>
+    <div class="container header">
+      <h1>TODO App</h1>
+    </div>
+    <div class="container">
+      <form class="holder form" method="post" action="/create" onsubmit="return onSubmitTodo(event)">
+        <input class="check" type="checkbox" disabled>
+        <input class="title" type="text" name="title" placeholder="Создайте TODO" value="" autofocus>
+      </form>
+      <div class="holder todos">
+        <ul>
+          {{#each todos}}
+            <li class="todo">
+              <div class="description">
+                <form method="post" action="/done">
+                  <input class="check" type="checkbox" name="done" value="1" {{#if this.done}}checked{{/if}} onchange="this.parentElement.submit()">
+                  <input type="hidden" name="id" value="{{this._id}}">
+                </form>
+                <span>{{this.title}}</span>
+                <i>Создано: {{date this.created}}{{#if this.done}}, Завершено: {{date this.closed}}{{/if}}</i>
+              </div>
+              <form method="post" action="/delete">
+                <button class="delete" onchange="this.parentElement.submit()">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18">
+                    <path fill="#494C6B" fill-rule="evenodd" d="M16.97 0l.708.707L9.546 8.84l8.132 8.132-.707.707-8.132-8.132-8.132 8.132L0 16.97l8.132-8.132L0 .707.707 0 8.84 8.132 16.971 0z"></path>
+                  </svg>
+                </button>
+                <input type="hidden" name="id" value="{{this._id}}">
+              </form>
+            </li>
+          {{else}}
+            <li class="center">
+              <br />
+              <br />
+              Пока нет ни одного TODO
+              <br />
+              <br />
+              Создайте!
+            </li>
+          {{/each}}
+        </ul>
+        <div class="todos-footer">
+          {{left}} todo осталось
+          <div>
+            <a{{#if mode.all}} class="selected"{{/if}} href="/">Все</a>
+            <a{{#if mode.active}} class="selected"{{/if}} href="?mode=active">Активные</a>
+            <a{{#if mode.done}} class="selected"{{/if}} href="?mode=done">Завершенные</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

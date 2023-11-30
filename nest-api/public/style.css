@@ -1,0 +1,115 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  color: #777a92;
+  background: #FFFFFF url('images/bg-desktop-light.jpg') no-repeat;
+  background-size: 100% auto;
+}
+
+a {
+  color: #777a92;
+  text-decoration: none;
+}
+ul {
+  list-style: none;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1000px;
+}
+
+.header {
+  color: #FFFFFF;
+  padding: 40px 0;
+}
+
+.holder {
+  display: flex;
+  background: #fff;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  box-shadow: 0 35px 50px rgba(194,195,214,.501961);
+}
+
+.holder.form {
+  padding: 20px;
+  align-items: center;
+}
+
+.form .title {
+  width: 100%;
+  outline: none;
+  font-size: 18px;
+  position: relative;
+  letter-spacing: -.25px;
+  border-color: transparent;
+  background-color: transparent;
+}
+
+.holder.todos {
+  min-height: 300px;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.todos-footer {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.todos-footer a {
+  margin-left: 10px;
+}
+.todos-footer a.selected {
+  color: #3a7cfd;
+}
+
+.todo {
+  display: flex;
+  padding: 20px;
+  font-size: 18px;
+  position: relative;
+  align-items: center;
+  letter-spacing: -.25px;
+  justify-content: space-between;
+  border-bottom: 1px solid #e4e5f1;
+}
+.todo .description {
+  display: flex;
+  align-items: center;
+}
+.todo .description input { display: block }
+.todo .description span { display: block }
+.todo .description i {
+  left: 61px;
+  bottom: 5px;
+  font-size: 12px;
+  position: absolute;
+}
+
+.check {
+  min-width: 30px;
+  min-height: 30px;
+  margin-right: 10px;
+}
+.delete {
+  opacity: 0;
+  border: none;
+  cursor: pointer;
+  background: transparent;
+  transition: opacity .5s ease-in-out;
+}
+.todo:hover .delete {
+  opacity: 1;
+}
+
+.center {
+  text-align: center;
+}
