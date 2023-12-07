@@ -1,4 +1,3 @@
-import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core'
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo'
 import { ConfigModule, ConfigService } from '@nestjs/config'
 import { MongooseModule } from '@nestjs/mongoose'
@@ -20,10 +19,6 @@ import { Todo, TodoSchema } from 'src/schemas/todo.schema'
       driver: ApolloDriver,
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       playground: false,
-      // @ts-expect-error Что то с типами внтури
-      plugins: [ApolloServerPluginLandingPageLocalDefault()],
-      context: ({ req, res }) => ({ req, res }),
-      cors: true,
       introspection: true,
       cache: 'bounded',
     }),
