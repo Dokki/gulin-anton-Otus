@@ -1,7 +1,5 @@
 {
   "singleQuote": true,
-  "trailingComma": "all"
-  "singleQuote": true,
   "semi": false,
   "trailingComma": "all",
   "bracketSameLine": false,
@@ -9,5 +7,5 @@
   "tabWidth": 2,
   "jsxSingleQuote": false,
   "arrowParens": "always",
-  "endOfLine": "lf",
+  "endOfLine": "lf"
 }
