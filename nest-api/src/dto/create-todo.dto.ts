@@ -1,6 +1,6 @@
 export class CreateTodoDto {
   readonly id?: string
-  readonly title: number
+  readonly title: string
   readonly done: boolean
   readonly created: number
   readonly closed: number
