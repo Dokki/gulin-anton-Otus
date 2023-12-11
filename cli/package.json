@@ -1,0 +1,21 @@
+{
+  "name": "otuscli",
+  "version": "1.0.0",
+  "description": "Simple CLI application for Otus school",
+  "main": "bin/index.js",
+  "type": "module",
+  "bin": {
+    "otuscli": "./bin/index.js"
+  },
+  "author": "Gulin Anton",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "clear-any-console": "^1.16.2",
+    "commander": "^11.1.0",
+    "cowsay": "^1.5.0",
+    "enquirer": "^2.4.1",
+    "global": "^4.4.0"
+  }
+}
