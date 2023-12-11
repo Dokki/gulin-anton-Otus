@@ -5,7 +5,7 @@ import { Module } from '@nestjs/common'
 import { TodosService } from './todos.service'
 import configuration from './configuration'
 import { TodosController } from './todos.controller'
-import {Todo, TodoSchema} from "src/schemas/todo.schema";
+import { Todo, TodoSchema } from 'src/schemas/todo.schema'
 
 @Module({
   imports: [
@@ -23,7 +23,7 @@ import {Todo, TodoSchema} from "src/schemas/todo.schema";
         return {
           uri: `mongodb://${host}:${port}/${table}`,
         }
-      }
+      },
     }),
     MongooseModule.forFeature([{ name: Todo.name, schema: TodoSchema }]),
   ],

@@ -16,9 +16,7 @@ const formatter = new Intl.DateTimeFormat('ru', {
 })
 
 const bootstrap = async () => {
-  const app = await NestFactory.create<NestExpressApplication>(
-    TodosModule,
-  );
+  const app = await NestFactory.create<NestExpressApplication>(TodosModule)
 
   app.use(cookieParser())
   app.useStaticAssets(join(__dirname, '..', 'public'))

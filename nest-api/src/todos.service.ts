@@ -1,7 +1,7 @@
 import { Model } from 'mongoose'
+import { Injectable } from '@nestjs/common'
 import { InjectModel } from '@nestjs/mongoose'
 
-import { Injectable } from '@nestjs/common'
 import { Todo } from './schemas/todo.schema'
 import { CreateTodoDto } from './dto/create-todo.dto'
 
@@ -14,7 +14,7 @@ export class TodosService {
       created: Date.now(),
       closed: 0,
       done: false,
-      ...createTodoDto
+      ...createTodoDto,
     }
     const createdCat = new this.todoModel(createTodo)
     return createdCat.save()
@@ -25,7 +25,10 @@ export class TodosService {
   }
 
   async updateDone(id: string, done: boolean): Promise<void> {
-    await this.todoModel.findOneAndUpdate({ _id: id }, { done, closed: done ? Date.now() : 0 })
+    await this.todoModel.findOneAndUpdate(
+      { _id: id },
+      { done, closed: done ? Date.now() : 0 },
+    )
   }
 
   async delete(id: string) {
