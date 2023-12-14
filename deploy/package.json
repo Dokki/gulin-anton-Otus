@@ -1,0 +1,15 @@
+{
+  "name": "deploy-to-render",
+  "version": "1.0.0",
+  "description": "Implementation of deploy to Render",
+  "main": "index.js",
+  "author": "Anton Gulin",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
