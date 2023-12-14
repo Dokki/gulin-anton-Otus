@@ -12,8 +12,7 @@ createServer((req, res) => {
   if (req.url.includes('api'))
     res.writeHead(200, { 'Content-Type': 'application/json' }).end(
       JSON.stringify({
-        text: `Этот текст от бэка, TESTING STRING!
-        Это новая строка с новым коммитом, чтобы запустился деплой`,
+        text: 'Этот текст от бэка, TESTING STRING!',
       }),
     )
   else if (req.url.includes('index.js'))
